@@ -64,8 +64,7 @@ async fn load_client_secret<P: AsRef<Path>>(
 
     file.read_to_string(&mut contents).await?;
     let secret = trim_trailing_whitespace(&contents);
-    #[cfg(debug_assertions)]
-    println!("using secret: {}", secret);
+
     Ok(ClientSecret::new(secret))
 }
 
