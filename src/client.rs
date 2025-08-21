@@ -56,7 +56,7 @@ fn trim_trailing_whitespace(s: &str) -> String {
     s.trim_end().to_string()
 }
 
-async fn laod_client_secret<P: AsRef<Path>>(
+async fn load_client_secret<P: AsRef<Path>>(
     secret_file: P,
 ) -> Result<ClientSecret, std::io::Error> {
     let mut file = File::open(secret_file.as_ref()).await?;
@@ -91,7 +91,7 @@ impl WorkingConfig {
         let issuer_url = config.issuer_url.clone();
 
         let client_id = ClientId::new(client_id);
-        let client_secret = laod_client_secret(&config.client_secret).await?;
+        let client_secret = load_client_secret(&config.client_secret).await?;
         let issuer_url = IssuerUrl::new(issuer_url)?;
 
         Ok(Self {
