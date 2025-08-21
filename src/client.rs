@@ -149,7 +149,7 @@ impl Validator {
             .iter()
             .filter(|v| v["alg"] == "RS256")
             .collect::<Vec<&serde_json::Value>>();
-        println!("keys: {:?}", jwtkeys);
+
         let jwk = jwtkeys.pop().unwrap();
         // Public key from the JWKS
         let public_key = DecodingKey::from_rsa_components(
