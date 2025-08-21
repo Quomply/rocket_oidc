@@ -62,10 +62,10 @@ extern crate rocket;
 extern crate err_derive;
 
 use std::fmt::Debug;
+pub mod auth;
 pub mod client;
 pub mod routes;
 pub mod token;
-pub mod auth;
 use client::{OIDCClient, Validator};
 use rocket::http::ContentType;
 use rocket::http::Cookie;
@@ -388,6 +388,9 @@ pub async fn setup(
         .mount("/auth", routes::get_routes()))
 }
 
-pub fn register_validator(rocket: rocket::Rocket<Build>, validator: crate::client::Validator) -> Rocket<Build> {
+pub fn register_validator(
+    rocket: rocket::Rocket<Build>,
+    validator: crate::client::Validator,
+) -> Rocket<Build> {
     rocket.manage(validator)
 }
